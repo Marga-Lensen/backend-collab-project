@@ -17,6 +17,8 @@ app.get("/", (req, res) => {
   res.send("Hello co-creator! Let's start building something great 🤓");
 });
 
+
+
 // Error Middleware
 app.use((err, req, res, next) => {
   console.error("❌ Error found:", err);

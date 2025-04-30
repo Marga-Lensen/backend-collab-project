@@ -42,6 +42,17 @@ und packages:
 - utils/  Ordner
 - - utils/connectDB.js
 
+#
+## wechseln zum neuen Ordner
 
+- node server.js
+❕ npm run start ist gleichwürdig ; kurz: 
+
+  npm start
+
+(in package.json:
+  "scripts": {
+    "start": "node server.js"
+  },)
 
 
