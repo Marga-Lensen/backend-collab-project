@@ -43,6 +43,8 @@ und packages:
 - - utils/connectDB.js
 
 #
+
+
 ## wechseln zum neuen Ordner
 
 - node server.js
@@ -56,3 +58,26 @@ und packages:
   },)
 
 
+## nächster Schritt
+
+- neben den Ordnern
+- - utils
+- - node_moduls
+
+### neue Ordner anlegen
+
+- data
+- - startData.json
+(- - seedData.js  script hier(oder neben server.js im root?))
+
+- models
+❕- - BewerbungSchema.js mongoose Schema 
+
+- controllers ..... später
+- routers   .... später
+
+
+## nächster großer Schritt: frontend dran hängen
+
+- simple html
+- react + vite

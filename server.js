@@ -3,6 +3,7 @@ import express from "express";
 import dotenv from "dotenv";
 import connect from "./utils/connectDB.js"; // Import the DB connection function
 
+
 dotenv.config();
 
 const app = express();
@@ -18,13 +19,11 @@ app.get("/", (req, res) => {
 });
 
 
-
 // Error Middleware
 app.use((err, req, res, next) => {
   console.error("❌ Error found:", err);
   res.sendStatus(500);
 });
-
 
 app.listen(PORT, () => {
   console.log(`✅ Server running on http://localhost:${PORT}`);

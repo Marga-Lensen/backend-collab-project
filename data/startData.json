@@ -1,0 +1,15 @@
+{
+    "Ausschreibung": {
+        "id": 1,
+        "titel": "Senior Fullstack Entwickler (m/w/d)",
+        "status": "eingereicht",
+        "arbeitszeit": "Vollzeit",
+        "datum": "2023-10-01",
+        "tech stack": [
+            "JavaScript",
+            "Node.js",
+            "React",
+            "MongoDB"
+        ]
+    }
+}

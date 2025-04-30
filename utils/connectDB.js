@@ -28,3 +28,6 @@ const uri = process.env.CONNECTION_STRING || process.env.MONGO_URI;
     // process.exit(1);
   }
 }
+// connect();  // man kann auch das script so ausführen; 
+// mit node utils/connectDB.js
+// aus dem root folder
