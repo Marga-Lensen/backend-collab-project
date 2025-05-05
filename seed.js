@@ -38,7 +38,9 @@ for (let i = 0; i < 300; i++) {
 console.log(productsArr.slice(0, 2));
 
 connect();
+
 seed()
+
 async function seed() {
 
   const products = await Product.insertMany(productsArr);

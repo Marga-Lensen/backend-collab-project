@@ -60,24 +60,44 @@ und packages:
 
 ## nächster Schritt
 
-- neben den Ordnern
-- - utils
-- - node_moduls
+neben den Ordnern
+- utils
+- node_modules
 
 ### neue Ordner anlegen
-
+#
 - data
 - - startData.json
-(- - seedData.js  script hier(oder neben server.js im root?))
 
+#
 - models
-❕- - BewerbungSchema.js mongoose Schema 
 
+❕- - BewerbungSchema.js // mongoose Schema 
+
+#
 - controllers ..... später
+#
 - routers   .... später
+
+
+### neue Dateien anlegen:
+
+- - seedData.js  // script neben server.js im root
 
 
 ## nächster großer Schritt: frontend dran hängen
 
-- simple html
-- react + vite
+-👉️ simple html.
+
++ Fokussierung liegt auf Backend
++ Beispielprojekt Handy (Mansour) war auch einfaches html;
+(und zwar repo16 - pagination - 11 März - backend lesson 16)
+in project: indexMansourHandy.html
+
+❕```<style>``` in html "onepager"
+❕```<script>``` in html "onepager"
+
+
+#
+NICHT react + vite
+- - relativ aufwändig und es geht hier ja um das backend vornämlich...
