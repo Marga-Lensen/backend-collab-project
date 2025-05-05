@@ -101,3 +101,19 @@ in project: indexMansourHandy.html
 #
 NICHT react + vite
 - - relativ aufwändig und es geht hier ja um das backend vornämlich...
+
+
+
+## Aufgabenverteilung
+
+### backend
+
+- models/BewerbungSchema.js
+- data.json
+- seed.js
+
+### frontend 
+
+- index.html
+- - style
+- - script
