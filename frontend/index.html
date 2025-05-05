@@ -8,10 +8,12 @@
       body {
         font-family: Arial, sans-serif;
         margin: 20px;
+        background-color: rgba(159, 168, 189, 0.425);
       }
       table {
         width: 100%;
         border-collapse: collapse;
+        background-color: rgba(199, 209, 218, 0.884);
       }
       th,
       td {
@@ -20,13 +22,27 @@
         text-align: left;
       }
       th {
-        background-color: #f2f2f2;
+        background-color: #4f7ea5c2;
+        color: rgb(3, 34, 61);
+        font-weight: bold;
       }
+      tr:nth-child(even) {
+        background-color: #dadeeba2;
+      }
+
       button {
         margin-top: 20px;
         padding: 10px 15px;
         font-size: 16px;
+        color: rgb(3, 34, 61);
+        font-weight: bold;
         cursor: pointer;
+        background-color: #4f7ea5c2;
+        border-radius: 8px;
+      }
+      button:hover {
+        background-color: #3b5f7a;
+        color: aliceblue;
       }
     </style>
   </head>
