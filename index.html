@@ -7,6 +7,55 @@
     <style></style>
 </head>
 <body>
-    <script></script>
+    <table>
+        <thead>
+          <tr>
+            <th>Vorname</th>
+            <th>Nachname</th>
+            <th>Email</th>
+            <th>Position</th>
+            <th>Status</th>
+            <th>Erstellt am</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <button>Aktualisieren</button>
+      
+      <script>
+        const tbody = document.querySelector("tbody");
+        const button = document.querySelector("button");
+      
+        button.addEventListener("click", async () => {
+          try {
+            const response = await fetch("http://localhost:5000/bewerbungen");
+            const data = await response.json();
+            console.log(data);
+      
+            tbody.innerHTML = "";
+      
+            data.forEach(bewerbung => {
+              const tr = document.createElement("tr");
+              tr.innerHTML = `
+                <td>${bewerbung.vorname}</td>
+                <td>${bewerbung.nachname}</td>
+                <td>${bewerbung.email}</td>
+                <td>${bewerbung.position}</td>
+                <td>${bewerbung.status}</td>
+                <td>${new Date(bewerbung.createdAt).toLocaleDateString()}</td>
+              `;
+              tbody.appendChild(tr);
+            });
+          } catch (error) {
+            console.error("Fehler beim Abrufen:", error);
+          }
+        });
+      
+        // Optional: Seite lädt direkt die Bewerbungen
+        window.addEventListener("DOMContentLoaded", () => {
+          button.click();
+        });
+      </script>
+      
 </body>
 </html>

@@ -3,13 +3,12 @@ import express from "express";
 import dotenv from "dotenv";
 import connect from "./utils/connectDB.js"; // Import the DB connection function
 import Bewerbung from "./models/BewerbungSchema.js"; // Import the Bewerbung model
-
-
-dotenv.config();
+import cors from "cors"; // wichtig für die Kommunikation zwischen Frontend und Backend
 
 const app = express();
 app.use(express.json()); // Middleware for JSON parsing
-
+app.use(cors()); // Enable CORS for all routes
+dotenv.config();
 const PORT = process.env.PORT  // use actually available port from .env
 
 // Try connecting to MongoDB; start server anyway even if connection fails
