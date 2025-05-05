@@ -1,42 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bewerbungsarchiv</title>
-    <style></style>
-</head>
-<body>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+      button {
+        margin-top: 20px;
+        padding: 10px 15px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
     <table>
-        <thead>
-          <tr>
-            <th>Vorname</th>
-            <th>Nachname</th>
-            <th>Email</th>
-            <th>Position</th>
-            <th>Status</th>
-            <th>Erstellt am</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-      <button>Aktualisieren</button>
-      
-      <script>
-        const tbody = document.querySelector("tbody");
-        const button = document.querySelector("button");
-      
-        button.addEventListener("click", async () => {
-          try {
-            const response = await fetch("http://localhost:5000/bewerbungen");
-            const data = await response.json();
-            console.log(data);
-      
-            tbody.innerHTML = "";
-      
-            data.forEach(bewerbung => {
-              const tr = document.createElement("tr");
-              tr.innerHTML = `
+      <thead>
+        <tr>
+          <th>Vorname</th>
+          <th>Nachname</th>
+          <th>Email</th>
+          <th>Position</th>
+          <th>Status</th>
+          <th>Erstellt am</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <button>Aktualisieren</button>
+
+    <!-- Erst config laden, dann eigenes Script -->
+    <script src="config.js"></script>
+    <script>
+      const tbody = document.querySelector("tbody");
+      const button = document.querySelector("button");
+
+      button.addEventListener("click", async () => {
+        try {
+          // const response = await fetch("http://localhost:5000/bewerbungen");
+          const response = await fetch(`${API_BASE_URL}/bewerbungen`);
+          const data = await response.json();
+          console.log(data);
+
+          tbody.innerHTML = "";
+
+          data.forEach((bewerbung) => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
                 <td>${bewerbung.vorname}</td>
                 <td>${bewerbung.nachname}</td>
                 <td>${bewerbung.email}</td>
@@ -44,18 +71,17 @@
                 <td>${bewerbung.status}</td>
                 <td>${new Date(bewerbung.createdAt).toLocaleDateString()}</td>
               `;
-              tbody.appendChild(tr);
-            });
-          } catch (error) {
-            console.error("Fehler beim Abrufen:", error);
-          }
-        });
-      
-        // Optional: Seite lädt direkt die Bewerbungen
-        window.addEventListener("DOMContentLoaded", () => {
-          button.click();
-        });
-      </script>
-      
-</body>
+            tbody.appendChild(tr);
+          });
+        } catch (error) {
+          console.error("Fehler beim Abrufen:", error);
+        }
+      });
+
+      // Optional: Seite lädt direkt die Bewerbungen
+      window.addEventListener("DOMContentLoaded", () => {
+        button.click();
+      });
+    </script>
+  </body>
 </html>
