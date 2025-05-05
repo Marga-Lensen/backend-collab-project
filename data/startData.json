@@ -1,15 +1,65 @@
-{
-    "Ausschreibung": {
-        "id": 1,
-        "titel": "Senior Fullstack Entwickler (m/w/d)",
-        "status": "eingereicht",
-        "arbeitszeit": "Vollzeit",
-        "datum": "2023-10-01",
-        "tech stack": [
-            "JavaScript",
-            "Node.js",
-            "React",
-            "MongoDB"
-        ]
+[
+    {
+      "vorname": "Anna",
+      "nachname": "Musterfrau",
+      "email": "anna.musterfrau@example.com",
+      "telefon": "+4915123456789",
+      "position": "Frontend-Entwicklerin",
+      "arbeitsort": "remote",
+      "anschreiben": "Ich bin begeistert von Ihrem Unternehmen und bringe Erfahrung in React mit.",
+      "lebenslaufLink": "https://example.com/anna_cv.pdf",
+      "referenznummer": "REF001",
+      "interneNotizen": "Sehr strukturiert.",
+      "status": "eingegangen"
+    },
+    {
+      "vorname": "Max",
+      "nachname": "Mustermann",
+      "email": "max.mustermann@example.com",
+      "telefon": "+4916012345678",
+      "position": "Backend-Entwickler",
+      "arbeitsort": "vor Ort",
+      "anschreiben": "Node.js und MongoDB beherrsche ich sicher.",
+      "lebenslaufLink": "https://example.com/max_cv.pdf",
+      "referenznummer": "REF002",
+      "interneNotizen": "Interview vereinbart.",
+      "status": "in Bearbeitung"
+    },
+    {
+      "vorname": "Lisa",
+      "nachname": "Beispiel",
+      "email": "lisa.beispiel@example.com",
+      "telefon": "+4917511122233",
+      "position": "UX Designerin",
+      "arbeitsort": "hybrid",
+      "anschreiben": "Ich bringe Kreativität und Nutzerzentrierung mit.",
+      "lebenslaufLink": "https://example.com/lisa_cv.pdf",
+      "referenznummer": "REF003",
+      "interneNotizen": "Gutes Portfolio.",
+      "status": "angenommen"
+    },
+    {
+      "vorname": "Tobias",
+      "nachname": "Entwickler",
+      "email": "tobias.dev@example.com",
+      "telefon": "+4915212341234",
+      "position": "Fullstack Developer",
+      "arbeitsort": "remote",
+      "anschreiben": "Ich habe Erfahrung mit MERN-Projekten.",
+      "lebenslaufLink": "https://example.com/tobias_cv.pdf",
+      "referenznummer": "REF004",
+      "status": "abgelehnt"
+    },
+    {
+      "vorname": "Julia",
+      "nachname": "Tech",
+      "email": "julia.tech@example.com",
+      "telefon": "+4917612345678",
+      "position": "DevOps Engineer",
+      "arbeitsort": "vor Ort",
+      "anschreiben": "CI/CD und Kubernetes gehören zu meinem Alltag.",
+      "lebenslaufLink": "https://example.com/julia_cv.pdf",
+      "referenznummer": "REF005"
     }
-}
+  ]
+  
