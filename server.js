@@ -2,6 +2,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import connect from "./utils/connectDB.js"; // Import the DB connection function
+import Bewerbung from "./models/BewerbungSchema.js"; // Import the Bewerbung model
 
 
 dotenv.config();
@@ -18,6 +19,15 @@ app.get("/", (req, res) => {
   res.send("Hello co-creator! Let's start building something great 🤓");
 });
 
+// Routes
+app.get("/bewerbungen", async (req, res) => {
+  try {
+    const bewerbungen = await Bewerbung.find().sort({ createdAt: -1 });
+    res.json(bewerbungen);
+  } catch (err) {
+    res.status(500).json({ error: "Fehler beim Abrufen der Bewerbungen" });
+  }
+});
 
 // Error Middleware
 app.use((err, req, res, next) => {
