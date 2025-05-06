@@ -2,6 +2,7 @@
   "name": "newproject",
   "version": "1.0.0",
   "main": "server.js",
+  "types": "module",
   "scripts": {
     "start": "node server.js"
   },
