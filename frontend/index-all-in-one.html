@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BewerbungsFORMULAR</title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 30px;
+        background: #2c0752;
+        background: linear-gradient(
+          90deg,
+          rgba(44, 7, 82, 1) 0%,
+          rgba(181, 9, 98, 1) 100%
+        );
+      }
+      h1 {
+        color: #b196c4;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      h2 {
+        color: #4b2d61;
+        text-align: center;
+        margin-bottom: 10px;
+      }
+      /* styling für das FORMULAR */
+      form {
+        margin: 0 auto;
+        background-color: #ebd5fc;
+        padding: 20px;
+        margin-bottom: 40px;
+        border-radius: 10px;
+        box-shadow: #ebd5fc 0px 0px 10px 0px;
+        color: #150322;
+        max-width: 600px;
+      }
+
+      form label {
+        display: block;
+        margin-bottom: 12px;
+        font-weight: bold;
+      }
+
+      form input,
+      form select,
+      form textarea {
+        display: block;
+        width: 95%;
+        padding: 8px;
+        margin-top: 4px;
+        margin-bottom: 16px;
+        border: 1px solid #150322;
+        border-radius: 5px;
+        font-size: 14px;
+        background-color: #fff;
+        color: #150322;
+      }
+
+      form input:focus,
+      form select:focus,
+      form textarea:focus {
+        outline: none;
+        border-color: #783b7a;
+        box-shadow: 0 0 5px #dda2f8;
+      }
+
+/* styling für die TABELLE */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: #ebd5fc;
+        box-shadow: #ebd5fc 0px 0px 10px 0px;
+      }
+      th,
+      td {
+        border: 1px solid #150322;
+        padding: 8px;
+        text-align: left;
+      }
+      th {
+        background-color: #dda2f8;
+        color: #150322;
+        font-weight: bold;
+      }
+      tr:nth-child(even) {
+        background-color: #e0d4fdf1;
+      }
+
+      button {
+        margin-top: 30px;
+        padding: 10px 15px;
+        font-size: 16px;
+        color: #150322;
+        font-weight: bold;
+        cursor: pointer;
+        background-color: #dda2f8;
+        border-radius: 8px;
+      }
+      button:hover {
+        background-color: #783b7a;
+        color: whitesmoke;
+        box-shadow: #ebd5fc 0px 0px 10px 0px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Bewerbung hinzufügen</h1>
+
+    <form id="bewerbungForm">
+      <label>
+        Unternehmen*:
+        <input type="text" name="unternehmen" required /> </label
+      ><br />
+
+      <label>
+        Vorname:
+        <input type="text" name="vorname" /> </label
+      ><br />
+
+      <label>
+        Nachname:
+        <input type="text" name="nachname" /> </label
+      ><br />
+
+      <label>
+        E-Mail*:
+        <input type="email" name="email" required /> </label
+      ><br />
+
+      <label>
+        Telefon:
+        <input type="text" name="telefon" /> </label
+      ><br />
+
+      <label>
+        Position*:
+        <input type="text" name="position" required /> </label
+      ><br />
+
+      <label>
+        Arbeitsort:
+        <select name="arbeitsort">
+          <option value="remote">Remote</option>
+          <option value="vor Ort" selected>Vor Ort</option>
+          <option value="hybrid">Hybrid</option>
+        </select> </label
+      ><br />
+
+      <label>
+        Anschreiben:
+        <textarea name="anschreiben"></textarea></label
+      ><br />
+
+      <label>
+        Lebenslauf-Link:
+        <input type="url" name="lebenslaufLink" /> </label
+      ><br />
+
+      <label>
+        Referenznummer:
+        <input type="text" name="referenznummer" /> </label
+      ><br />
+
+      <label>
+        Interne Notizen:
+        <textarea name="interneNotizen"></textarea></label
+      ><br />
+
+      <button type="submit">Absenden</button>
+    </form>
+
+    <div id="successMsg"></div>
+    <div id="errorMsg"></div>
+
+    <h1>Bewerbungen</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Vorname</th>
+          <th>Nachname</th>
+          <th>Email</th>
+          <th>Position</th>
+          <th>Status</th>
+          <th>Erstellt am</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <!-- <button onclick="click">Aktualisieren</button> -->
+    <button>Aktualisieren</button>
+
+    <!-- Erst config laden, dann eigenes Script -->
+    <!-- <script src="config-5000.js"></script> -->
+    <script src="config.js"></script>
+
+    <!-- //// script für das Formular  ///////////////// -->
+    <script>
+      const form = document.getElementById("bewerbungForm");
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        const formData = new FormData(form);
+        const data = {};
+
+        // Formulardaten als JSON zusammenstellen
+        formData.forEach((value, key) => {
+          data[key] = value;
+        });
+
+        try {
+          const response = await fetch(`${API_BASE_URL}/bewerbungen`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          });
+
+          if (!response.ok) {
+            const error = await response.json();
+            throw new Error(error.message || "Fehler beim Absenden");
+          }
+
+          alert("Bewerbung erfolgreich gespeichert!");
+          form.reset(); // Formular zurücksetzen
+        } catch (error) {
+          console.error("Fehler:", error);
+          alert("Fehler beim Absenden: " + error.message);
+        }
+      });
+    </script>
+
+    <script>
+      const tbody = document.querySelector("tbody");
+      const button = document.querySelector("button");
+
+      button.addEventListener("click", async () => {
+        try {
+          // const response = await fetch("http://localhost:5000/bewerbungen");
+          const response = await fetch(`${API_BASE_URL}/bewerbungen`);
+          const data = await response.json();
+          console.log(data);
+
+          tbody.innerHTML = "";
+
+          data.forEach((bewerbung) => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+                  <td>${bewerbung.vorname}</td>
+                  <td>${bewerbung.nachname}</td>
+                  <td>${bewerbung.email}</td>
+                  <td>${bewerbung.position}</td>
+                  <td>${bewerbung.status}</td>
+                  <td>${new Date(bewerbung.createdAt).toLocaleDateString()}</td>
+                `;
+            tbody.appendChild(tr);
+          });
+        } catch (error) {
+          console.error("Fehler beim Abrufen:", error);
+        }
+      });
+
+      // Optional: Seite lädt direkt die Bewerbungen
+      window.addEventListener("DOMContentLoaded", () => {
+        button.click();
+      });
+    </script>
+  </body>
+</html>
