@@ -18,6 +18,7 @@ app.get("/", (req, res) => {
   res.send("Hello co-creator! Let's start building something great 🤓");
 });
 
+////////////////// GET & POST /bewerbungen ////////////////////////////////
 // Routes
 app.get("/bewerbungen", async (req, res) => {
   try {
@@ -27,6 +28,17 @@ app.get("/bewerbungen", async (req, res) => {
     res.status(500).json({ error: "Fehler beim Abrufen der Bewerbungen" });
   }
 });
+
+app.post("/bewerbungen", async (req, res) => {
+  try {
+    const neueBewerbung = new Bewerbung(req.body);
+    await neueBewerbung.save();
+    res.status(201).json(neueBewerbung);
+  } catch (err) {
+    res.status(500).json({ error: "Fehler beim Speichern der Bewerbung" });
+  }
+});
+/////////////////////////////////////////////////////
 
 // Error Middleware
 app.use((err, req, res, next) => {
