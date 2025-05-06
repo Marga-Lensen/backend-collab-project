@@ -1,6 +1,10 @@
+
+<div align="center"><img src="./backend/utils/Screenshot.png" alt="screenshot" height="100"></div>
+
 # Backend-Collab-Project
 
 <a id="readme-top"></a>
+
 
 <details>
 <br/>
@@ -65,7 +69,7 @@ Sonja Linhard - [@GitHub](https://github.com/SoLin26).
 
 Doris Pasic - [@Wonderlink](https://wonderl.ink/@dorispasicstudio) - [@GitHub](https://github.com/DorisPasic).
 
-Website Link: - 
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
