@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BewerbungsFORMULAR</title>
+    <style>
+        body {
+            background-color: #1e1e1e;
+            color: goldenrod;
+            font-family: 'Segoe UI', sans-serif;
+            padding: 2rem;
+        }
+
+        h1 {
+            text-align: center;
+            color: #d4af37;
+            font-size: 2rem;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 1.5rem;
+            background: #2c2c2c;
+            border-radius: 12px;
+            box-shadow: 0 0 10px #d4af37a8;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #ccc;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 0.7rem;
+            margin-bottom: 1.2rem;
+            border-radius: 8px;
+            border: 1px solid #555;
+            background-color: #1e1e1e;
+            color: #eee;
+        }
+
+        button {
+            background-color: goldenrod;
+            color: #1e1e1e;
+            padding: 10px 15px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #e0b645;
+        }
+        #successMsg {
+            text-align: center;
+            color: #d4af37;
+            font-size: 1.2rem;
+            margin-top: 1rem;
+        }
+        #errorMsg {
+            text-align: center;
+            color: rgba(78, 6, 6, 0.603);
+            font-size: 1.2rem;
+            margin-top: 1rem;
+        }
+    </style>
+    </head>
+<body>
+    <h1>Bewerbung hinzufügen</h1>
+
+
+    <div id="successMsg"></div>
+    <div id="errorMsg"></div>
+
+
+<script>
+    document.getElementById("bewerbungForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const payload = {
+    vorname: document.getElementById("vorname").value,
+    nachname: document.getElementById("nachname").value,
+    email: document.getElementById("email").value,
+    telefon: document.getElementById("telefon").value,
+    position: document.getElementById("position").value,
+    arbeitsort: document.getElementById("arbeitsort").value,
+    anschreiben: document.getElementById("anschreiben").value,
+    lebenslaufLink: document.getElementById("lebenslaufLink").value,
+    // referenznummer: document.getElementById("referenznummer").value,
+    // status: document.getElementById("status").value,
+  };
+
+////////// 👉️ POST request /////////////////////
+  try {
+    const res = await fetch("http://localhost:5000/bewerbungen", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+
+    if (!res.ok) {
+      const errText = await res.text();
+      throw new Error(`Fehler: ${res.status} – ${errText}`);
+    }
+/////////////////////////////////////////////////
+
+    alert("Bewerbung erfolgreich gespeichert!");
+    e.target.reset();
+  } catch (err) {
+    alert("Fehler beim Speichern: " + err.message);
+  }
+});
+</script>
+    
+</body>
+</html>
