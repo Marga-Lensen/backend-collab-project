@@ -33,7 +33,8 @@ z.B. Arbeitszeit: enum ["vollzeit", "teilzeit", "werkstudent", "praktikum"]
 import mongoose from 'mongoose';
 const { Schema, model } = mongoose;
 const BewerbungSchema = new Schema({
-  vorname: { type: String, required: true, trim: true },
+  // ansprechpartner  // Adressat
+  vorname: { type: String, required: true, trim: true },  // was wenn nicht bekannt?
   nachname: { type: String, required: true, trim: true },
   email: {
     type: String,

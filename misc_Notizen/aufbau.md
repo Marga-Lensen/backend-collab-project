@@ -82,7 +82,7 @@ neben den Ordnern
 
 ### neue Dateien anlegen:
 
-- - seedData.js  // script neben server.js im root
+- - seed.js  // script neben server.js im root
 
 
 ## nächster großer Schritt: frontend dran hängen
@@ -90,6 +90,7 @@ neben den Ordnern
 -👉️ simple html.
 
 + Fokussierung liegt auf Backend
+
 + Beispielprojekt Handy (Mansour) war auch einfaches html;
 (und zwar repo16 - pagination - 11 März - backend lesson 16)
 in project: indexMansourHandy.html
@@ -102,18 +103,29 @@ in project: indexMansourHandy.html
 NICHT react + vite
 - - relativ aufwändig und es geht hier ja um das backend vornämlich...
 
-
+- - immer neustarten mit npm run dev und dann ist localhost: 5173 besetzt
 
 ## Aufgabenverteilung
 
 ### backend
 
-- models/BewerbungSchema.js
-- data.json
-- seed.js
+-✔️ models/BewerbungSchema.js
+-✔️ data.json
+-✔️ seed.js
 
 ### frontend 
 
+### I. Wiedergabe von Bewerbungen aus MongoDB
+
+-✔️ index.html
+-✔️ - ```<style>```
+-✔️ - ```<script>```
+
+
+### II. Eintragen von Bewerbungen in MongoDB
+
 - index.html
-- - style
-- - script
+- - ```<style>```
+- - ```<script>```
+
+<!--<button>ich bin ein button</button>-->
