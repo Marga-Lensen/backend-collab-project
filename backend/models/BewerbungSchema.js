@@ -52,7 +52,9 @@ const BewerbungSchema = new Schema({
   anschreiben: { type: String, trim: true },
   lebenslaufLink: { type: String, trim: true },
   dokumente: [{ name: String, link: String }],
-  referenznummer: { type: String, unique: true, trim: true },
+  // referenznummer: { type: String, unique: true, trim: true },😨🤯
+  // referenznummer: { type: String, unique: true, sparse: true, default: "", trim: true },
+  referenznummer: { type: String, default: "", trim: true }, // Hier unique und required entfernt
   interneNotizen: { type: String, trim: true },
   bewerbungsdatum: { type: Date, default: Date.now },
   status: {
