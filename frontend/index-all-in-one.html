@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BewerbungsFORMULAR</title>
+    <title>Bewerbungsmanager</title>
 
     <style>
       body {
@@ -17,12 +17,12 @@
         );
       }
       h1 {
-        color: #b196c4;
+        color: #a97bca;
         text-align: center;
         margin-bottom: 20px;
       }
-      h2 {
-        color: #4b2d61;
+      form h2 {
+        color: #651f97;
         text-align: center;
         margin-bottom: 10px;
       }
@@ -104,12 +104,15 @@
         color: whitesmoke;
         box-shadow: #ebd5fc 0px 0px 10px 0px;
       }
+
+      
     </style>
   </head>
   <body>
-    <h1>Bewerbung hinzufügen</h1>
 
-    <form id="bewerbungForm">
+    <form id="bewerbungForm">    
+      <h2>Bewerbung hinzufügen</h2>
+
       <label>
         Unternehmen*:
         <input type="text" name="unternehmen" required /> </label
@@ -159,10 +162,10 @@
         <input type="url" name="lebenslaufLink" /> </label
       ><br />
 
-      <label>
+      <!-- <label>
         Referenznummer:
-        <input type="text" name="referenznummer" /> </label
-      ><br />
+        <input type="text" name="referenznummer" disabled/> </label
+      ><br /> -->
 
       <label>
         Interne Notizen:
@@ -175,8 +178,8 @@
     <div id="successMsg"></div>
     <div id="errorMsg"></div>
 
-    <h1>Bewerbungen</h1>
-    <table>
+    <h1>Aktuelle Bewerbungen</h1>
+    <table id="bewerbungTabelle">
       <thead>
         <tr>
           <th>Vorname</th>
@@ -189,8 +192,7 @@
       </thead>
       <tbody></tbody>
     </table>
-    <!-- <button onclick="click">Aktualisieren</button> -->
-    <button>Aktualisieren</button>
+    <button id="refreshBtn">Aktualisieren</button>
 
     <!-- Erst config laden, dann eigenes Script -->
     <!-- <script src="config-5000.js"></script> -->
@@ -201,6 +203,7 @@
       const form = document.getElementById("bewerbungForm");
 
       form.addEventListener("submit", async (event) => {
+        console.log("submit ausgelöst");
         event.preventDefault();
 
         const formData = new FormData(form);
@@ -221,24 +224,32 @@
           });
 
           if (!response.ok) {
-            const error = await response.json();
-            throw new Error(error.message || "Fehler beim Absenden");
+            // const error = await response.json();
+            // throw new Error("Fehler beim Absenden");
+            const errorText = await response.text(); // Rohtext statt JSON
+  console.error("Serverantwort (nicht ok):", response.status, errorText);
+  throw new Error(`Fehler beim Absenden: ${response.status} ${response.statusText}`);
           }
+
+          // Antwort des Servers empfangen
+          const responseData = await response.json();
+          console.log("Serverantwort: ", responseData);  // Hier siehst du, ob die Daten zurückkommen
 
           alert("Bewerbung erfolgreich gespeichert!");
           form.reset(); // Formular zurücksetzen
         } catch (error) {
-          console.error("Fehler:", error);
-          alert("Fehler beim Absenden: " + error.message);
+          console.error("Fehler (nicht vom Server):", error);
+          alert("Netzwerkfehler oder ungültige Antwort: " + error.message);
         }
       });
     </script>
 
+    <!-- //// script für die Tabelle  ///////////////// -->
     <script>
       const tbody = document.querySelector("tbody");
-      const button = document.querySelector("button");
+      const refreshBtn = document.getElementById("refreshBtn");
 
-      button.addEventListener("click", async () => {
+      refreshBtn.addEventListener("click", async () => {
         try {
           // const response = await fetch("http://localhost:5000/bewerbungen");
           const response = await fetch(`${API_BASE_URL}/bewerbungen`);
@@ -266,7 +277,7 @@
 
       // Optional: Seite lädt direkt die Bewerbungen
       window.addEventListener("DOMContentLoaded", () => {
-        button.click();
+        refreshBtn.click();
       });
     </script>
   </body>
