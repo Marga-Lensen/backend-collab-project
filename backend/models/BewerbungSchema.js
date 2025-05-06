@@ -33,8 +33,8 @@ import mongoose from 'mongoose';
 const { Schema, model } = mongoose;
 const BewerbungSchema = new Schema({
   unternehmen: { type: String, required: true, trim: true },
-  vorname: { type: String, required: true, trim: true },
-  nachname: { type: String, required: true, trim: true },
+  vorname: { type: String, trim: true },
+  nachname: { type: String, trim: true },
   email: {
     type: String,
     required: true,
