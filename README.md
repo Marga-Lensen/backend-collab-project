@@ -1,5 +1,5 @@
 
-<div align="center"><img src="./backend/utils/Screenshot.png" alt="screenshot" height="100"></div>
+<div align="center"><img src="./misc_Notizen/assets/Screenshot.png" alt="screenshot" height="100"></div>
 
 # Backend-Collab-Project
 
