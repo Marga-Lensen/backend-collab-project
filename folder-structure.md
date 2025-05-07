@@ -1,4 +1,4 @@
-```
+```markdown
 .
 ├── backend
 │   ├── data
@@ -14,18 +14,7 @@
 ├── folder-structure.md
 ├── frontend
 │   ├── config.js
-│   ├── index-all-in-one.html
-│   └── Marga-files
-│       ├── assets
-│       ├── chats-hilfe
-│       ├── config.js
-│       ├── indexML-Btn-notSoNice.html
-│       ├── indexML-GET.html
-│       ├── indexML-POST.html
-│       ├── indexML-refreshBtn.html
-│       ├── index-only-form.html
-│       ├── index-POST-form-dark.html
-│       └── script-table.html
+│   └── index-all-in-one.html
 ├── misc_Notizen
 │   ├── assets
 │   │   ├── Screenshot.png
@@ -34,4 +23,4 @@
 └── README.md
 ```
 
-11 directories, 22 files
+8 directories, 14 files
