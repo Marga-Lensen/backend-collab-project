@@ -40,4 +40,41 @@ April, 30 - May, 7 2025
 - program the frontend
 - - **html onepager** w embedded ```<style>``` and ```<script>```
 
+I. show bewerbungs from MongoDB in html ```<table>```
 
+- html head (end)   ```<style>```
+- html body (middle)```<table>```
+- html body (end)   ```<script>```
+
+II. enter new Bewerbung with html ```<form>```
+
+- html head (end)   ```<style>```
+- html body (middle)```<form>```
+- html body (end)   ```<script>```
+
+#
+❕API endpoint different for different people... 
+
+=> config.js with API_BASE_URL
+
+```javascript
+const API_BASE_URL = "http://localhost:5000"; 
+```
+
+=> await fetch('')
+
+```javascript
+    const response = await fetch(`${API_BASE_URL}/bewerbungen`, {})
+```
+#
+
+### Day 3 
+
+- styling of table and forms
+- matching input (form) & output (table) with Schema (database)
+- folder structure organisation
+- README w
+- - screenshots
+- - project details
+- - planning & documentation
+- - links to contributors' profiles
