@@ -1,5 +1,5 @@
 
-<div align="center"><img src="./misc_Notizen/assets/Screenshot.png" alt="screenshot" height="100"></div>
+<div align="center"><img src="./misc_Notizen/assets/Screenshot.png" alt="screenshot" width="50%"> <img src="./misc_Notizen/assets/ScreenshotTabelle.png" alt="screenshot" width="50%"></div>
 
 # Backend-Collab-Project
 
@@ -64,7 +64,7 @@ Involved in the project:
 ## Construction
 <a id="construction"></a>
 
-Documentation of construction: [@aufbau.md](https://github.com/Marga-Lensen/backend-collab-project/blob/main/misc_Notizen/aufbau.md)
+Documentation of construction: [@Journal.md](https://github.com/Marga-Lensen/backend-collab-project/blob/main/misc_Notizen/Journal.md)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
