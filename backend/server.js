@@ -15,9 +15,9 @@ const PORT = process.env.PORT  // use actually available port from .env
 connect(); // Connect to MongoDB
 
 // einmalig ausführen
-Bewerbung.collection.dropIndex('referenznummer_1')
+/* Bewerbung.collection.dropIndex('referenznummer_1')
   .then(() => console.log('✅ Alter referenznummer-Index gelöscht'))
-  .catch(err => console.warn('⚠️ Kein referenznummer-Index vorhanden oder anderer Fehler:', err.message));
+  .catch(err => console.warn('⚠️ Kein referenznummer-Index vorhanden oder anderer Fehler:', err.message)); */
 
 
 app.get("/", (req, res) => {
