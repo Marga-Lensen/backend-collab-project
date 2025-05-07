@@ -13,6 +13,7 @@
     <li><a href="#about-the-project">About The Project</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#built-with">Built With</a></li>
+    <li><a href="#construction">Construction</a></li>
     <li><a href="#contact">Contact</a></li>
   </ol>
 </details>
@@ -57,6 +58,13 @@ Involved in the project:
 * JavaScript
 * express
 * mongoose
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Construction
+<a id="construction"></a>
+
+Documentation of construction: [@aufbau.md](https://github.com/Marga-Lensen/backend-collab-project/blob/main/misc_Notizen/aufbau.md)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
