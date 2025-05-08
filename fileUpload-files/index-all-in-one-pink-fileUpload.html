@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="../misc_Notizen/assets/Screenshot.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bewerbungsmanager</title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 30px;
+        background: #2c0752;
+        background: linear-gradient(
+          90deg,
+          rgba(44, 7, 82, 1) 0%,
+          rgba(181, 9, 98, 1) 100%
+        );
+      }
+      h1 {
+        color: #a97bca;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      form h2 {
+        color: #651f97;
+        text-align: center;
+        margin-bottom: 10px;
+      }
+      /* styling für das FORMULAR */
+      form {
+        margin: 0 auto;
+        background-color: #ebd5fc;
+        padding: 20px;
+        margin-bottom: 40px;
+        border-radius: 10px;
+        box-shadow: #ebd5fc 0px 0px 10px 0px;
+        color: #150322;
+        max-width: 600px;
+      }
+
+      form label {
+        display: block;
+        margin-bottom: 12px;
+        font-weight: bold;
+      }
+
+      form input,
+      form select,
+      form textarea {
+        display: block;
+        width: 95%;
+        padding: 8px;
+        margin-top: 4px;
+        margin-bottom: 16px;
+        border: 1px solid #150322;
+        border-radius: 5px;
+        font-size: 14px;
+        background-color: #fff;
+        color: #150322;
+      }
+
+      form input:focus,
+      form select:focus,
+      form textarea:focus {
+        outline: none;
+        border-color: #783b7a;
+        box-shadow: 0 0 5px #dda2f8;
+      }
+
+/* styling für die TABELLE */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: #ebd5fc;
+        box-shadow: #ebd5fc 0px 0px 10px 0px;
+      }
+      th,
+      td {
+        border: 1px solid #150322;
+        padding: 8px;
+        text-align: left;
+      }
+      th {
+        background-color: #dda2f8;
+        color: #150322;
+        font-weight: bold;
+      }
+      tr:nth-child(even) {
+        background-color: #e0d4fdf1;
+      }
+
+      button {
+        margin-top: 30px;
+        padding: 10px 15px;
+        font-size: 16px;
+        color: #150322;
+        font-weight: bold;
+        cursor: pointer;
+        background-color: #dda2f8;
+        border-radius: 8px;
+      }
+      button:hover {
+        background-color: #783b7a;
+        color: whitesmoke;
+        box-shadow: #ebd5fc 0px 0px 10px 0px;
+      }
+    </style>
+  </head>
+  <body>
+
+<!--     <form id="bewerbungForm">    
+      <h2>Bewerbung hinzufügen</h2>
+
+      <label>
+        Unternehmen*:
+        <input type="text" name="unternehmen" required /> </label
+      ><br />
+
+      <label>
+        Vorname:
+        <input type="text" name="vorname" /> </label
+      ><br />
+
+      <label>
+        Nachname:
+        <input type="text" name="nachname" /> </label
+      ><br />
+
+      <label>
+        E-Mail*:
+        <input type="email" name="email" required /> </label
+      ><br />
+
+      <label>
+        Telefon:
+        <input type="text" name="telefon" /> </label
+      ><br />
+
+      <label>
+        Position*:
+        <input type="text" name="position" required /> </label
+      ><br />
+
+      <label>
+        Arbeitsort:
+        <select name="arbeitsort">
+          <option value="remote">Remote</option>
+          <option value="vor Ort" selected>Vor Ort</option>
+          <option value="hybrid">Hybrid</option>
+        </select> </label
+      ><br />
+
+      <label>
+        Anschreiben:
+        <textarea name="anschreiben"></textarea></label
+      ><br />
+
+      <label>
+        Lebenslauf-Link:
+        <input type="url" name="lebenslaufLink" /> </label
+      ><br />
+
+      <label>
+        Interne Notizen:
+        <textarea name="interneNotizen"></textarea></label
+      ><br />
+
+      <button type="submit">Absenden</button>
+    </form> -->
+
+    <!-- <h1>Aktuelle Bewerbungen</h1> -->
+<!--     <table id="bewerbungTabelle">
+      <thead>
+        <tr>
+          <th>Vorname</th>
+          <th>Nachname</th>
+          <th>Email</th>
+          <th>Position</th>
+          <th>Status</th>
+          <th>Erstellt am</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table> -->
+    <!-- <button id="refreshBtn">Aktualisieren</button> -->
+
+<!-- ######  html form mit file upload ########################### -->
+    
+<form id="bewerbungForm" enctype="multipart/form-data" style="display: grid; gap: 1rem; max-width: 600px; margin: 2rem auto;">
+    <h2>Bewerbung einreichen</h2>
+  
+    <!-- Firma -->
+    <label>
+      Unternehmensname*:
+      <input type="text" name="firma" required />
+    </label>
+  
+    <!-- Stelle -->
+    <label>
+      Stellenbezeichnung:
+      <input type="text" name="stelle" />
+    </label>
+  
+    <!-- Datum -->
+    <label>
+      Datum der Bewerbung:
+      <input type="date" name="datum" />
+    </label>
+  
+    <!-- Art der Bewerbung -->
+    <label>
+      Art der Bewerbung:
+      <select name="art" required>
+        <option value="">-- bitte wählen --</option>
+        <option value="email">E-Mail</option>
+        <option value="schriftlich">Postalisch</option>
+        <option value="plattform">Online-Plattform (z. B. Indeed, LinkedIn)</option>
+        <option value="intern">Intern / Empfehlung</option>
+      </select>
+    </label>
+  
+    <!-- Lebenslauf-Auswahl -->
+    <fieldset>
+      <legend>Lebenslauf</legend>
+      <label>
+        Version wählen:
+        <select name="lebenslauf_version" id="lebenslaufSelect">
+          <option value="canva-de.pdf">canva-de.pdf</option>
+          <option value="resume-en.pdf">resume-en.pdf</option>
+          <option value="lebenslauf-2024-04.pdf">lebenslauf-2024-04.pdf</option>
+          <option value="other">Andere Datei hochladen</option>
+        </select>
+      </label>
+  
+      <label id="lebenslaufUploadLabel" style="display: none;">
+        Lebenslauf hochladen:
+        <input type="file" name="lebenslauf_datei" accept=".pdf,.doc,.docx" />
+      </label>
+    </fieldset>
+  
+    <!-- Anschreiben -->
+    <fieldset>
+      <legend>Anschreiben</legend>
+  
+      <label>
+        Format wählen:
+        <select name="anschreiben_format" id="anschreibenFormat">
+          <option value="text">Text</option>
+          <option value="upload">Datei hochladen</option>
+        </select>
+      </label>
+  
+      <label id="anschreibenTextareaLabel">
+        Anschreiben (Text):
+        <textarea name="anschreiben_text" rows="10" placeholder="Hier dein Anschreiben einfügen..."></textarea>
+      </label>
+  
+      <label id="anschreibenUploadLabel" style="display: none;">
+        Anschreiben hochladen:
+        <input type="file" name="anschreiben_datei" accept=".pdf,.doc,.docx" />
+      </label>
+    </fieldset>
+  
+    <button type="submit">Absenden</button>
+  </form>
+
+<!-- ################  ende html form ########################### -->
+
+    <!-- Erst config laden, dann eigenes Script -->
+    <!-- <script src="config-5000.js"></script> -->
+    <!-- <script src="config.js"></script> -->
+
+
+<!-- ######  html form mit file upload ########################### -->
+
+<script>
+    const form = document.getElementById("bewerbungForm");
+  
+    // Dynamik: Lebenslauf-Auswahl
+    const lebenslaufSelect = document.getElementById("lebenslaufSelect");
+    const lebenslaufUploadLabel = document.getElementById("lebenslaufUploadLabel");
+    lebenslaufSelect.addEventListener("change", () => {
+      lebenslaufUploadLabel.style.display = lebenslaufSelect.value === "other" ? "block" : "none";
+    });
+  
+    // Dynamik: Anschreiben (Text oder Datei)
+    const anschreibenFormat = document.getElementById("anschreibenFormat");
+    const anschreibenTextareaLabel = document.getElementById("anschreibenTextareaLabel");
+    const anschreibenUploadLabel = document.getElementById("anschreibenUploadLabel");
+  
+    anschreibenFormat.addEventListener("change", () => {
+      if (anschreibenFormat.value === "text") {
+        anschreibenTextareaLabel.style.display = "block";
+        anschreibenUploadLabel.style.display = "none";
+      } else {
+        anschreibenTextareaLabel.style.display = "none";
+        anschreibenUploadLabel.style.display = "block";
+      }
+    });
+  
+    // Formular absenden
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+  
+      const formData = new FormData(form);
+  
+      try {
+        const res = await fetch("http://localhost:5000/bewerbungen", {
+          method: "POST",
+          body: formData,
+        });
+  
+        const data = await res.json();
+        alert("Bewerbung erfolgreich gesendet!");
+        form.reset();
+        lebenslaufUploadLabel.style.display = "none";
+        anschreibenTextareaLabel.style.display = "block";
+        anschreibenUploadLabel.style.display = "none";
+      } catch (err) {
+        console.error("Fehler beim Senden", err);
+        alert("Fehler beim Absenden der Bewerbung.");
+      }
+    });
+  </script>
+
+    <!-- //// script für das alte bewerbungsFormular  ///////////////// -->
+<!--     <script>
+      const form = document.getElementById("bewerbungForm");
+
+      form.addEventListener("submit", async (event) => {
+        // console.log("submit ausgelöst");
+        event.preventDefault();
+
+        const formData = new FormData(form);
+        const data = {};
+
+        // Formulardaten als JSON zusammenstellen
+        formData.forEach((value, key) => {
+          data[key] = value;
+        });
+
+        try {
+          const response = await fetch(`${API_BASE_URL}/bewerbungen`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          });
+
+          if (!response.ok) {
+            // const error = await response.json();
+            // throw new Error("Fehler beim Absenden");
+            const errorText = await response.text(); // Rohtext statt JSON
+  console.error("Serverantwort (nicht ok):", response.status, errorText);
+  throw new Error(`Fehler beim Absenden: ${response.status} ${response.statusText}`);
+          }
+
+          // Antwort des Servers empfangen
+          const responseData = await response.json();
+          console.log("Serverantwort: ", responseData);  // Hier siehst du, ob die Daten zurückkommen
+
+          alert("Bewerbung erfolgreich gespeichert!");
+          form.reset(); // Formular zurücksetzen
+        } catch (error) {
+          console.error("Fehler (nicht vom Server):", error);
+          alert("Netzwerkfehler oder ungültige Antwort: " + error.message);
+        }
+      });
+    </script> -->
+
+    <!-- //// script für die alte bewerbungsTabelle  ///////////////// -->
+<!--     <script>
+      const tbody = document.querySelector("tbody");
+      const refreshBtn = document.getElementById("refreshBtn");
+
+      refreshBtn.addEventListener("click", async () => {
+        try {
+          // const response = await fetch("http://localhost:5000/bewerbungen");
+          const response = await fetch(`${API_BASE_URL}/bewerbungen`);
+          const data = await response.json();
+          console.log(data);
+
+          tbody.innerHTML = "";
+
+          data.forEach((bewerbung) => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+                  <td>${bewerbung.vorname}</td>
+                  <td>${bewerbung.nachname}</td>
+                  <td>${bewerbung.email}</td>
+                  <td>${bewerbung.position}</td>
+                  <td>${bewerbung.status}</td>
+                  <td>${new Date(bewerbung.createdAt).toLocaleDateString()}</td>
+                `;
+            tbody.appendChild(tr);
+          });
+        } catch (error) {
+          console.error("Fehler beim Abrufen:", error);
+        }
+      });
+
+      // Optional: Seite lädt direkt die Bewerbungen
+      window.addEventListener("DOMContentLoaded", () => {
+        refreshBtn.click();
+      });
+    </script> -->
+  </body>
+</html>
